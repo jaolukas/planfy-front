@@ -38,9 +38,16 @@ header h1 {
     color: #6381A8;
 }
 
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
 /* Menu de navegação */
 header .nav-header {
-    margin-left: 225px;
+    margin-left: 245px;
 }
 
 header ul {

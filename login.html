@@ -15,10 +15,12 @@
 <body>
 
     <header>
-        <h1 class="logo">PLANFY</h1>
+        <h1 class="logo">
+            <a href="/index.html">PLANFY</a>
+        </h1>
         <nav class="nav-header">
             <ul>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="/sobre.html">Sobre</a></li>
                 <li><a href="#">Tarefas</a></li>
                 <li><a href="/login.html">Login</a></li>
             </ul>
@@ -107,9 +109,16 @@
             color: #6381A8;
         }
 
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+
         /* Menu de navegação */
         header .nav-header {
-            margin-left: 225px;
+            margin-left: 245px;
         }
 
         header ul {
@@ -191,7 +200,7 @@
         /* Caixa de Login */
         .box {
             width: 350px;
-            padding: 30px;
+            padding: 40px;
             background: #E9DBDF;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -204,6 +213,7 @@
             margin-bottom: 20px;
             color: #333;
             cursor: context-menu;
+            font-weight: 900;
         }
 
         /* Campos de Entrada */
@@ -227,6 +237,7 @@
             padding: 10px 15px;
             margin-top: 10px;
             font-size: 16px;
+            font-weight: 700;
             color: #fff;
             background: #6381A8;
             border: none;
@@ -244,6 +255,7 @@
             font-size: 12px;
             color: #222;
             cursor: context-menu;
+            font-weight: bold;
         }
 
         p a {
@@ -279,7 +291,7 @@
         .border02 {
             position: absolute;
             z-index: -1;
-            top: 345px;
+            top: 395px;
             right: 0;
         }
 
@@ -312,7 +324,7 @@
                 display: none;
                 position: absolute;
                 top: 85px;
-                left: 23%;
+                left: 21%;
                 background-color: white;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
                 text-align: center;
@@ -326,8 +338,8 @@
             }
 
             .nav-header ul {
-                padding: 10px;
-                gap: 10px;
+                padding: 15px;
+                gap: 20px;
             }
 
             .nav-header ul li {
@@ -392,7 +404,7 @@
             }
 
             header .nav-header {
-                margin-left: 75px;
+                margin-left: 70px;
             }
 
             .creation,

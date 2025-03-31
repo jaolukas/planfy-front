@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sobre</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,40 +34,42 @@
         <picture><img src="/public/Perfil.jpg" class="perfil"></picture>
     </header>
 
-    <div class="container">
-        <picture class="border01"><img src="/public/Borda02.png"></picture>
-        <picture class="border02"><img src="/public/Borda03.png"></picture>
+    <picture class="border01"><img src="/public/Borda02.png"></picture>
+    <picture class="border02"><img src="/public/Borda03.png"></picture>
 
-        <div class="box">
-            <h1>CRIE UMA CONTA</h1>
-
-            <form onsubmit="validateForm(event)">
-                <div class="input-group">
-                    <input type="text" id="username" name="Nome" placeholder="Nome" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" id="email" name="Email" placeholder="Email" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="password" name="Senha" placeholder="Senha" required>
-                </div>
-                <label class="checkbox">
-                    <input type="checkbox" id="showPassword" onclick="togglePassword()"> Mostrar senha
-                </label>
-                <button type="submit">Criar Conta</button>
-            </form>
-
-            <button></button>
-
-            <p>CASO JÁ TENHA CRIADO UMA CONTA</p>
-            <p><a href="/login.html">CLIQUE AQUI</a> e entre agora.</p>
-        </div>
+    <div class="container-sobre">
+        <h1>Sobre o PlanFy</h1>
+        <p>PlanFy é uma plataforma inteligente de gestão de tarefas desenvolvida para otimizar sua rotina diária. Com
+            uma interface intuitiva e recursos avançados, nossa missão é ajudar você a manter a organização e
+            produtividade de forma simples e eficiente.</p>
     </div>
+
+    <main class="content">
+        <section class="box-card">
+            <div class="card">
+                <h1>Nossa Missão</h1>
+                <p>Facilitar o gerenciamento de tarefas e aumentar a produtividade dos usuários, oferecendo uma solução
+                    moderna e acessível.</p>
+            </div>
+            <div class="card">
+                <h1>Nossa Visão</h1>
+                <p>Ser a principal plataforma de organização pessoal e profissional, impactando positivamente a vida das
+                    pessoas.</p>
+            </div>
+        </section>
+        <section class="values">
+            <div class="card">
+                <h1>Valores</h1>
+                <p>Priorizamos a simplicidade, eficiência e inovação para garantir uma experiência otimizada aos nossos
+                    usuários.</p>
+            </div>
+        </section>
+    </main>
 
     <style>
         /* ------------------------------
-        Global
-    ------------------------------ */
+            Global
+        ------------------------------ */
         * {
             margin: 0;
             padding: 0;
@@ -75,9 +77,13 @@
             font-family: 'Nunito', sans-serif;
         }
 
+        body {
+            background-color: #f4f4f4;
+        }
+
         /* ------------------------------
-        Cabeçalho
-    ------------------------------ */
+            Cabeçalho
+        ------------------------------ */
         header {
             width: 100%;
             height: 100px;
@@ -182,118 +188,119 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid #c0c7d0;
+            cursor: pointer;
         }
 
         /* ------------------------------
-        Container-Box
-    ------------------------------ */
-        .container {
-            display: grid;
-            justify-items: center;
-            align-items: center;
-            height: 800px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Caixa de Login */
-        .box {
-            width: 350px;
-            padding: 40px;
-            background: #E9DBDF;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 100px auto;
-        }
-
-        .box h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-            cursor: context-menu;
-            font-weight: 900;
-        }
-
-        /* Campos de Entrada */
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 25px;
-            outline: none;
-            background-color: white;
-        }
-
-        /* Botão de Envio */
-        button[type="submit"] {
-            padding: 10px 20px;
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-            background: #6381A8;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: 0.4s ease-in-out;
-        }
-
-        button[type="submit"]:hover {
-            background: #445d7e;
-        }
-
-        /* Parágrafos e Links */
-        p {
-            font-size: 12px;
-            color: #222;
-            cursor: context-menu;
-            font-weight: bold;
-        }
-
-        p:first-of-type {
-            margin-top: 10px;
-        }
-
-        p a {
-            color: #007BFF;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        p a:hover {
-            text-decoration: underline;
-        }
-
-        /* Checkbox */
-        .checkbox {
+            Container-sobre
+        ------------------------------ */
+        .container-sobre {
             display: flex;
-            gap: 5px;
-            margin-left: 15px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 100px;
+            padding: 40px 20px;
+            border-radius: 12px;
+            cursor: default;
         }
 
-        input[type="checkbox"] {
+        .container-sobre h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #445d7e;
+            margin-bottom: 20px;
+        }
+
+        .container-sobre p {
+            max-width: 900px;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .container-sobre strong {
+            color: #6381A8;
+        }
+
+        /* Estilização da página Sobre */
+        .sobre {
+            text-align: center;
+            padding: 80px 20px;
+            color: #445d7e;
+        }
+
+        .sobre h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .sobre p {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Estilos dos cards */
+        .box-card {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin: 60px auto;
+        }
+
+        .card {
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h1 {
+            color: #6381A8;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        /* Seção de valores */
+        .values {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 150px;
         }
 
         /* Bordas decorativas */
         .border01 {
             position: absolute;
             z-index: -1;
-            top: -10px;
+            top: 80px;
             left: 0;
         }
 
         .border02 {
             position: absolute;
             z-index: -1;
-            top: 395px;
+            top: 645px !important;
             right: 0;
         }
 
@@ -307,7 +314,7 @@
             height: 450px;
         }
 
-        /* Responsividade Header para Mobile */
+        /*Resposividade Header Mobile*/
         @media (max-width: 768px) {
             header {
                 padding: 0 20px;
@@ -344,12 +351,6 @@
                 gap: 20px;
             }
 
-            .nav-header ul li {
-                font-size: 1rem;
-                margin: 0;
-                width: 100%;
-            }
-
             .menu-toggle {
                 display: block;
                 font-size: 20px;
@@ -357,41 +358,51 @@
                 cursor: pointer;
             }
 
-            .perfil {
-                margin-top: 5px;
-            }
-
             .perfil,
             .creation {
                 width: 40px;
                 height: 40px;
             }
-        }
 
-        @media (max-width: 768px) {
-            .box {
-                width: 280px;
-                padding: 20px;
+            /* Responsividade Sobre */
+            .container-sobre h1 {
+                font-size: 2.2rem;
             }
 
-            .input-group input {
-                font-size: 14px;
-                padding: 10px;
+            .container-sobre p {
+                font-size: 1.1rem;
+                padding: 0 30px;
+                max-width: 650px;
             }
 
-            button[type="submit"] {
-                width: 90px;
-                font-size: 14px;
+            .sobre h1 {
+                font-size: 2.5rem;
             }
 
-            .border01 img,
-            .border02 img {
+            .box-card {
+                gap: 20px;
+            }
+
+            .card {
+                max-width: 90%;
+            }
+
+            .border01 img {
                 width: 300px;
                 height: 250px;
             }
+
+            .border02 img {
+                width: 350px;
+                height: 280px;
+            }
+
+            .border02 {
+                top: 980px;
+            }
         }
 
-        /* Responsividade Header para Tablet */
+        /* Responsividade Header para Tablet e maior */
         @media (max-width: 1024px) {
             header {
                 padding: 0 20px;
@@ -405,70 +416,58 @@
                 font-size: 1.8rem;
             }
 
-            header .nav-header {
+            .nav-header {
                 margin-left: 70px;
             }
 
-            .creation,
-            .perfil {
+            .perfil,
+            .creation {
                 width: 45px;
                 height: 45px;
             }
-        }
 
-        @media (max-width: 1024px) {
-            .box {
-                width: 320px;
-                padding: 25px;
+            /* Responsividade Sobre */
+            .container-sobre h1 {
+                font-size: 2.5rem;
             }
 
-            .border01 img,
+            .container-sobre p {
+                font-size: 1.2rem;
+                max-width: 750px;
+            }
+
+            .sobre h1 {
+                font-size: 2.8rem;
+            }
+
+            .box-card {
+                gap: 30px;
+            }
+
+            .card {
+                max-width: 50%;
+            }
+
+            .border01 img {
+                width: 350px;
+                height: 300px;
+            }
+
             .border02 img {
                 width: 400px;
                 height: 350px;
             }
 
-            .border02 {
-                top: 445px;
+            @media (min-width: 769px) and (max-width: 1024px) {
+                .border02 {
+                    top: 980px;
+                }
             }
         }
     </style>
 
-    <script>
-        function togglePassword() {
-            var passwordInput = document.getElementById("password");
-            var checkbox = document.getElementById("showPassword");
-
-            if (checkbox.checked) {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        }
-
-        function validateForm(event) {
-            event.preventDefault();
-
-            // Obtém os valores dos campos
-            var username = document.getElementById("username").value;
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-
-            // Validações
-            if (username === "" || email === "" || password === "") {
-                alert("Todos os campos devem ser preenchidos!");
-                return false;
-            }
-
-            // Verifica se o e-mail tem um "@" para ser válido
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!emailPattern.test(email)) {
-                alert("Por favor, insira um e-mail válido!");
-                return false;
-            }
-
-            alert("Conta criada com sucesso!");
-        }
-    </script>
-
     <script src="/Js/index.js" defer></script>
+
+</body>
+
+</html>
