@@ -393,3 +393,189 @@ footer h1.logo {
 footer p {
     cursor: context-menu;
 }
+
+/* Modal */
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Título do Modal */
+#modal-title {
+    font-size: 24px;
+    color: #6381A8;
+    font-weight: 700;
+    margin-bottom: 20px;
+    cursor: context-menu;
+}
+
+/* Body do Modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Campo de texto */
+#task-text {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Select de Categoria */
+#task-category {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Dropdown de Recorrência */
+.custom-dropdown {
+    position: relative;
+}
+
+#task-recurrence-display {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #F8F8FF;
+}
+
+#task-recurrence-options {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+#task-recurrence-display:focus+#task-recurrence-options,
+#task-recurrence-options:hover {
+    display: block;
+    text-align: left;
+}
+
+#task-recurrence-options label {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#task-recurrence-options input[type="checkbox"] {
+    cursor: pointer;
+}
+
+#task-recurrence-options input {
+    margin-right: 10px;
+}
+
+/* Rodapé do Modal */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+/* Estilo para botão salvar */
+.save-btn {
+    background-color: #6381A8;
+    color: #F8F8FF;
+}
+
+.save-btn:hover {
+    background-color: #445d7e;
+    transform: scale(1.03);
+}
+
+/* Estilo para botão cancelar */
+.cancel-btn {
+    background-color: #d3d3d3;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #b4b4b4;
+    transform: scale(1.03);
+}
+
+/* Transição suave para o Modal */
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Desqualificação do diaria */
+.disabled-checkbox {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Seletor de Horas*/
+/* Estilizando o seletor de hora */
+#task-time {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #6381A8;
+    background-color: #F8F8FF;
+    color: #445d7e;
+    transition: border-color 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Estilo quando o campo de hora estiver em foco */
+#task-time:focus {
+    border-color: #6381A8;
+    outline: none;
+}

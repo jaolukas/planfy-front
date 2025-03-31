@@ -116,8 +116,49 @@
         </div>
     </footer>
 
+    <!-- Modal de Criação -->
 
-    <script src="/Js/index.js" defer></script>
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Nova Tarefa</h2>
+            <div class="modal-body">
+                <input type="text" id="task-text" placeholder="Adicione uma nova tarefa...">
+
+                <select id="task-category">
+                    <option value="diaria">Diária</option>
+                    <option value="semanal">Semanal</option>
+                    <option value="mensal">Mensal</option>
+                </select>
+
+                <div class="custom-dropdown">
+                    <input type="text" id="task-recurrence-display" readonly placeholder="Selecione os dias" />
+                    <div id="task-recurrence-options" class="dropdown-options">
+                        <label><input type="checkbox" value="all day"> Todos os dias</label>
+                        <label><input type="checkbox" value="Segunda"> Segunda</label>
+                        <label><input type="checkbox" value="Terça"> Terça</label>
+                        <label><input type="checkbox" value="Quarta"> Quarta</label>
+                        <label><input type="checkbox" value="Quinta"> Quinta</label>
+                        <label><input type="checkbox" value="Sexta"> Sexta</label>
+                        <label><input type="checkbox" value="Sábado"> Sábado</label>
+                        <label><input type="checkbox" value="Domingo"> Domingo</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="task-time"></label>
+                    <input type="time" id="task-time">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="save-task-btn" class="save-btn">Salvar</button>
+                <button id="cancel-task-btn" class="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/index.js" defer></script>
 
 </body>
 
