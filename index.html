@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanFy</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/response.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 class="logo">
+            <a href="/index.html">PLANFY</a>
+        </h1>
+        <nav class="nav-header">
+            <ul>
+                <li><a href="/sobre.html">Sobre</a></li>
+                <li><a href="#">Tarefas</a></li>
+                <li><a href="/login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars fa-lg"></i>
+        </div>
+
+        <div class="creation"><i class="fa-solid fa-plus fa-lg"></i></div>
+
+        <picture><img src="/public/Perfil.jpg" class="perfil"></picture>
+
+    </header>
+
+    <div class="container">
+        <div class="planfy-logo">PLANFY</div>
+    </div>
+
+    <div>
+        <picture class="border01"><img src="/public/Borda01.png"></picture>
+        <picture class="border02"><img src="/public/Borda02.png"></picture>
+        <picture class="border03"><img src="/public/Borda03.png"></picture>
+        <picture class="border04"><img src="/public/Borda04.png"></picture>
+
+        <main class="content">
+            <section class="box-card">
+                <div class="card">
+                    <h1>FÁCIL UTILIZAÇÃO</h1>
+                    <p>Nosso sistema oferece uma interface intuitiva, tornando a criação e gestão de tarefas mais fácil
+                        e rápida, sem complicação.</p>
+                </div>
+
+                <div class="card">
+                    <h1>ORGANIZAÇÃO E EFICIÊNCIA</h1>
+                    <p>Organize suas tarefas de maneira inteligente, com opções de repetições diárias, semanais ou
+                        mensais, para garantir produtividade.</p>
+                </div>
+            </section>
+
+            <section class="column">
+                <picture><img src="/public/setaUp.png"></picture>
+                <picture><img src="/public/SetaDown.png"></picture>
+            </section>
+
+            <section>
+                <div class="card">
+                    <h1>LEMBRETES PERSONALIZADOS</h1>
+                    <p>Receba lembretes automáticos para garantir que suas tarefas sejam cumpridas dentro do prazo, sem
+                        esquecer nenhum detalhe importante.</p>
+                </div>
+            </section>
+        </main>
+
+        <div class="box-nav">
+
+            <div class="box-text">
+                <h1>Transforme Sua Produtividade com o Planfy</h1>
+                <p>Planfy é a mais nova plataforma inteligente de gestão de tarefas, projetada para otimizar sua rotina
+                    diária.
+                    Com ela, você pode criar lembretes personalizados, acompanhar o progresso de suas atividades e obter
+                    insights claros sobre suas conquistas e desafios. Ao contabilizar seus resultados, o Planfy oferece
+                    uma visão precisa das tarefas realizadas com sucesso e das pendentes, ajudando você a manter o foco
+                    e a produtividade.</p>
+            </div>
+
+            <picture><img src="/public/ilustracao01.png"></picture>
+
+        </div>
+    </div>
+
+    <footer>
+        <h1 class="logo">PLANFY</h1>
+
+        <div class="pulblic">
+            <nav class="nav-footer">
+                <ul>
+                    <li><a href="#">Termos</a></li>
+                    <li><a href="#">Privacidade</a></li>
+                    <li><a href="#">Segurança</a></li>
+                </ul>
+            </nav>
+
+            <p>&copy; 2025 PLANFY - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="social-app">
+            <i class="fa-brands fa-square-instagram fa-lg"></i>
+            <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+            <i class="fa-brands fa-square-youtube fa-lg"></i>
+            <i class="fa-brands fa-square-facebook fa-lg"></i>
+        </div>
+    </footer>
+
+    <!-- Modal de Criação -->
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Nova Tarefa</h2>
+            <div class="modal-body">
+                <input type="text" id="task-text" placeholder="Adicione uma nova tarefa...">
+
+                <select id="task-category">
+                    <option value="diaria">Diária</option>
+                    <option value="semanal">Semanal</option>
+                    <option value="mensal">Mensal</option>
+                </select>
+
+                <div class="custom-dropdown">
+                    <input type="text" id="task-recurrence-display" readonly placeholder="Selecione os dias" />
+                    <div id="task-recurrence-options" class="dropdown-options">
+                        <label><input type="checkbox" value="all day"> Todos os dias</label>
+                        <label><input type="checkbox" value="Segunda"> Segunda</label>
+                        <label><input type="checkbox" value="Terça"> Terça</label>
+                        <label><input type="checkbox" value="Quarta"> Quarta</label>
+                        <label><input type="checkbox" value="Quinta"> Quinta</label>
+                        <label><input type="checkbox" value="Sexta"> Sexta</label>
+                        <label><input type="checkbox" value="Sábado"> Sábado</label>
+                        <label><input type="checkbox" value="Domingo"> Domingo</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="task-time"></label>
+                    <input type="time" id="task-time">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="save-task-btn" class="save-btn">Salvar</button>
+                <button id="cancel-task-btn" class="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/index.js" defer></script>
+
+</body>
+
+</html>

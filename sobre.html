@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 class="logo">
+            <a href="/index.html">PLANFY</a>
+        </h1>
+        <nav class="nav-header">
+            <ul>
+                <li><a href="/sobre.html">Sobre</a></li>
+                <li><a href="#">Tarefas</a></li>
+                <li><a href="/login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars fa-lg"></i>
+        </div>
+
+        <div class="creation"><i class="fa-solid fa-plus fa-lg"></i></div>
+
+        <picture><img src="/public/Perfil.jpg" class="perfil"></picture>
+    </header>
+
+    <picture class="border01"><img src="/public/Borda02.png"></picture>
+    <picture class="border02"><img src="/public/Borda03.png"></picture>
+
+    <div class="container-sobre">
+        <h1>Sobre o PlanFy</h1>
+        <p>PlanFy é uma plataforma inteligente de gestão de tarefas desenvolvida para otimizar sua rotina diária. Com
+            uma interface intuitiva e recursos avançados, nossa missão é ajudar você a manter a organização e
+            produtividade de forma simples e eficiente.</p>
+    </div>
+
+    <main class="content">
+        <section class="box-card">
+            <div class="card">
+                <h1>Nossa Missão</h1>
+                <p>Facilitar o gerenciamento de tarefas e aumentar a produtividade dos usuários, oferecendo uma solução
+                    moderna e acessível.</p>
+            </div>
+            <div class="card">
+                <h1>Nossa Visão</h1>
+                <p>Ser a principal plataforma de organização pessoal e profissional, impactando positivamente a vida das
+                    pessoas.</p>
+            </div>
+        </section>
+        <section class="values">
+            <div class="card">
+                <h1>Valores</h1>
+                <p>Priorizamos a simplicidade, eficiência e inovação para garantir uma experiência otimizada aos nossos
+                    usuários.</p>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        /* ------------------------------
+            Global
+        ------------------------------ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* ------------------------------
+            Cabeçalho
+        ------------------------------ */
+        header {
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            cursor: context-menu;
+        }
+
+        /* Logo */
+        .logo {
+            width: 200px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F8F8FF;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #6381A8;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+
+        /* Menu de navegação */
+        header .nav-header {
+            margin-left: 245px;
+        }
+
+        header ul {
+            color: #6381A8;
+            display: flex;
+            gap: 50px;
+            list-style-type: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        header ul li {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header ul a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease-in-out;
+        }
+
+        header ul li:hover {
+            transform: scale(1.1);
+        }
+
+        header ul a:hover {
+            color: #445d7e;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Botão de criação */
+        .creation {
+            width: 50px;
+            height: 50px;
+            background-color: #6381A8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .creation:hover {
+            background-color: #445d7e;
+            transform: scale(1.1);
+        }
+
+        .creation i {
+            color: #F8F8FF;
+            font-size: 22px;
+        }
+
+        /* Imagem do perfil */
+        .perfil {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #c0c7d0;
+            cursor: pointer;
+        }
+
+        /* ------------------------------
+            Container-sobre
+        ------------------------------ */
+        .container-sobre {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 100px;
+            padding: 40px 20px;
+            border-radius: 12px;
+            cursor: default;
+        }
+
+        .container-sobre h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #445d7e;
+            margin-bottom: 20px;
+        }
+
+        .container-sobre p {
+            max-width: 900px;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .container-sobre strong {
+            color: #6381A8;
+        }
+
+        /* Estilização da página Sobre */
+        .sobre {
+            text-align: center;
+            padding: 80px 20px;
+            color: #445d7e;
+        }
+
+        .sobre h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .sobre p {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Estilos dos cards */
+        .box-card {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin: 60px auto;
+        }
+
+        .card {
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h1 {
+            color: #6381A8;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        /* Seção de valores */
+        .values {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 150px;
+        }
+
+        /* Bordas decorativas */
+        .border01 {
+            position: absolute;
+            z-index: -1;
+            top: 90px;
+            left: 0;
+        }
+
+        .border02 {
+            position: absolute;
+            z-index: -1;
+            top: 815px !important;
+            right: 0;
+        }
+
+        .border01 img {
+            width: 500px;
+            height: 400px;
+        }
+
+        .border02 img {
+            width: 500px;
+            height: 450px;
+        }
+
+        /*Resposividade Header Mobile*/
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                width: 125px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+
+            .nav-header {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 21%;
+                background-color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+                text-align: center;
+                border-radius: 10px;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .nav-header.active {
+                display: block;
+                transform: translateX(0);
+            }
+
+            .nav-header ul {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 20px;
+                color: #6381A8;
+                cursor: pointer;
+            }
+
+            .perfil,
+            .creation {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* Responsividade Sobre */
+            .container-sobre h1 {
+                font-size: 2.2rem;
+            }
+
+            .container-sobre p {
+                font-size: 1.1rem;
+                padding: 0 30px;
+                max-width: 650px;
+            }
+
+            .sobre h1 {
+                font-size: 2.5rem;
+            }
+
+            .box-card {
+                gap: 20px;
+            }
+
+            .card {
+                max-width: 90%;
+            }
+
+            .border01 img {
+                width: 300px;
+                height: 250px;
+            }
+
+            .border02 img {
+                width: 350px;
+                height: 280px;
+            }
+
+            .border02 {
+                top: 980px;
+            }
+        }
+
+        /* Responsividade Header para Tablet e maior */
+        @media (max-width: 1024px) {
+            header {
+                padding: 0 20px;
+                display: flex;
+                gap: 15px;
+            }
+
+            .logo {
+                width: 150px;
+                height: 40px;
+                font-size: 1.8rem;
+            }
+
+            .nav-header {
+                margin-left: 70px;
+            }
+
+            .perfil,
+            .creation {
+                width: 45px;
+                height: 45px;
+            }
+
+            /* Responsividade Sobre */
+            .container-sobre h1 {
+                font-size: 2.5rem;
+            }
+
+            .container-sobre p {
+                font-size: 1.2rem;
+                max-width: 750px;
+            }
+
+            .sobre h1 {
+                font-size: 2.8rem;
+            }
+
+            .box-card {
+                gap: 30px;
+            }
+
+            .card {
+                max-width: 50%;
+            }
+
+            .border01 img {
+                width: 350px;
+                height: 300px;
+            }
+
+            .border02 img {
+                width: 400px;
+                height: 350px;
+            }
+
+            @media (min-width: 769px) and (max-width: 1024px) {
+                .border02 {
+                    top: 980px;
+                }
+            }
+        }
+    </style>
+
+    <script src="/Js/index.js" defer></script>
+
+</body>
+
+</html>
