@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -31,7 +30,12 @@
 
         <div class="creation"><i class="fa-solid fa-plus fa-lg"></i></div>
 
-        <picture><img src="/public/Perfil.jpg" class="perfil"></picture>
+        <a href="/perfil.html">
+            <picture>
+                <img src="/public/Perfil.jpg" class="perfil" alt="Perfil">
+            </picture>
+        </a>
+
     </header>
 
     <div class="container">
@@ -64,6 +68,48 @@
         </div>
     </div>
 
+    <!-- Modal de Criação -->
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Nova Tarefa</h2>
+            <div class="modal-body">
+                <input type="text" id="task-text" placeholder="Adicione uma nova tarefa...">
+
+                <select id="task-category">
+                    <option value="diaria">Diária</option>
+                    <option value="semanal">Semanal</option>
+                    <option value="mensal">Mensal</option>
+                </select>
+
+                <div class="custom-dropdown">
+                    <input type="text" id="task-recurrence-display" readonly placeholder="Selecione os dias" />
+                    <div id="task-recurrence-options" class="dropdown-options">
+                        <label><input type="checkbox" value="all day"> Todos os dias</label>
+                        <label><input type="checkbox" value="Segunda"> Segunda</label>
+                        <label><input type="checkbox" value="Terça"> Terça</label>
+                        <label><input type="checkbox" value="Quarta"> Quarta</label>
+                        <label><input type="checkbox" value="Quinta"> Quinta</label>
+                        <label><input type="checkbox" value="Sexta"> Sexta</label>
+                        <label><input type="checkbox" value="Sábado"> Sábado</label>
+                        <label><input type="checkbox" value="Domingo"> Domingo</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="task-time"></label>
+                    <input type="time" id="task-time">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="save-task-btn" class="save-btn">Salvar</button>
+                <button id="cancel-task-btn" class="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
     <style>
         /* ------------------------------
         Global
@@ -73,6 +119,11 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden !important;
+            background-color: #f4f4f4;
         }
 
         /* ------------------------------
@@ -307,6 +358,187 @@
             height: 450px;
         }
 
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Conteúdo do Modal */
+        .modal-content {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Título do Modal */
+        #modal-title {
+            font-size: 24px;
+            color: #6381A8;
+            font-weight: 700;
+            margin-bottom: 20px;
+            cursor: context-menu;
+        }
+
+        /* Body do Modal */
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Campo de texto */
+        #task-text {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Select de Categoria */
+        #task-category {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Dropdown de Recorrência */
+        .custom-dropdown {
+            position: relative;
+        }
+
+        #task-recurrence-display {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            background-color: #F8F8FF;
+        }
+
+        #task-recurrence-options {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #task-recurrence-display:focus+#task-recurrence-options,
+        #task-recurrence-options:hover {
+            display: block;
+            text-align: left;
+        }
+
+        #task-recurrence-options label {
+            display: block;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #task-recurrence-options input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        #task-recurrence-options input {
+            margin-right: 10px;
+        }
+
+        /* Rodapé do Modal */
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .modal-footer button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Estilo botão salvar */
+        .save-btn {
+            background-color: #6381A8;
+            color: #F8F8FF;
+        }
+
+        .save-btn:hover {
+            background-color: #445d7e;
+            transform: scale(1.03);
+        }
+
+        /* Estilo botão cancelar */
+        .cancel-btn {
+            background-color: #d3d3d3;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background-color: #b4b4b4;
+            transform: scale(1.03);
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Desqualificação do diaria */
+        .disabled-checkbox {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Seletor de Horas*/
+        #task-time {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #6381A8;
+            background-color: #F8F8FF;
+            color: #445d7e;
+            transition: border-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #task-time:focus {
+            border-color: #6381A8;
+            outline: none;
+        }
+
         /* Responsividade Header para Mobile */
         @media (max-width: 768px) {
             header {
@@ -469,6 +701,104 @@
 
             alert("Conta criada com sucesso!");
         }
+
+        /* Modal */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const taskModal = document.getElementById("task-modal");
+            const saveTaskBtn = document.getElementById("save-task-btn");
+            const cancelTaskBtn = document.getElementById("cancel-task-btn");
+            const creationButton = document.querySelector(".creation");
+            const taskText = document.getElementById("task-text");
+            const taskCategory = document.getElementById("task-category");
+            const recurrenceDisplay = document.getElementById("task-recurrence-display");
+            const recurrenceCheckboxes = document.querySelectorAll("#task-recurrence-options input[type='checkbox']");
+            const taskTime = document.getElementById("task-time");
+
+            let isPageReloaded = false;
+
+            // Abrir modal ao clicar no botão de criação
+            creationButton.addEventListener("click", function () {
+                document.getElementById("modal-title").textContent = "Nova Tarefa";
+                taskModal.style.display = "flex";
+            });
+
+            // Fechar modal ao clicar no botão de cancelar
+            cancelTaskBtn.addEventListener("click", function () {
+                taskModal.style.display = "none";
+            });
+
+            // Bloquear checkboxes de dias da semana se for "Diária"
+            function updateCheckboxes() {
+                const isDiaria = taskCategory.value === "diaria";
+
+                recurrenceCheckboxes.forEach(checkbox => {
+                    checkbox.disabled = isDiaria;
+                    if (isDiaria) {
+                        checkbox.checked = false;
+                    }
+                });
+
+                if (recurrenceDisplay) {
+                    recurrenceDisplay.value = isDiaria ? "" : "Selecione os dias";
+                }
+            }
+
+            updateCheckboxes();
+
+            taskCategory.addEventListener("change", updateCheckboxes);
+
+            // Validação antes de salvar a tarefa
+            saveTaskBtn.addEventListener("click", function () {
+                const taskValue = taskText.value.trim();
+                const selectedCheckboxes = Array.from(recurrenceCheckboxes).filter(checkbox => checkbox.checked);
+                const isDiaria = taskCategory.value === "diaria";
+                const taskTimeValue = taskTime.value.trim();
+
+                // Verifica se o campo de texto está vazio
+                if (!taskValue) {
+                    alert("Por favor, preencha o nome da tarefa.");
+                    return;
+                }
+
+                // Verifica se o seletor de hora está vazio
+                if (!taskTimeValue) {
+                    alert("Por favor, selecione uma hora.");
+                    return;
+                }
+
+                // Se não for "Diária", verificar se ao menos um dia foi selecionado
+                if (!isDiaria && selectedCheckboxes.length === 0) {
+                    alert("Por favor, selecione pelo menos um dia da semana.");
+                    return;
+                }
+
+                // Se todas as verificações passaram
+                alert(`Tarefa criada com sucesso!`);
+
+                taskModal.style.display = "none";
+
+                // Limpar os campos após salvar
+                taskText.value = "";
+                taskCategory.value = "semanal";
+                recurrenceCheckboxes.forEach(checkbox => (checkbox.checked = false));
+                taskTime.value = "";
+
+                if (recurrenceDisplay) {
+                    recurrenceDisplay.value = "Selecione os dias";
+                }
+
+                if (!isPageReloaded) {
+                    isPageReloaded = true;
+                    location.reload();
+                }
+
+            });
+        });
     </script>
 
     <script src="/Js/index.js" defer></script>
+
+</body>
+
+</html>

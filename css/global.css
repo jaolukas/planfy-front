@@ -6,8 +6,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
-html, body{
-    overflow-x: hidden !important; 
+html,
+body {
+    overflow-x: hidden !important;
+    background-color: #f4f4f4;
 }
 
 /* Cabeçalho */
@@ -399,8 +401,6 @@ footer p {
 }
 
 /* Modal */
-
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -565,7 +565,6 @@ footer p {
 }
 
 /* Seletor de Horas*/
-/* Estilizando o seletor de hora */
 #task-time {
     width: 100%;
     padding: 10px;
