@@ -13,14 +13,14 @@
 
 <body>
 
-    <header>
+    <header class="header" id="header">
         <h1 class="logo">
             <a href="/index.html">PLANFY</a>
         </h1>
         <nav class="nav-header">
             <ul>
                 <li><a href="/sobre.html">Sobre</a></li>
-                <li><a href="#">Tarefas</a></li>
+                <li><a href="/tarefas.html">Tarefas</a></li>
                 <li><a href="/login.html">Login</a></li>
             </ul>
         </nav>
@@ -41,39 +41,106 @@
     <div class="container">
 
         <div class="container-user">
-
             <div class="container-profile">
-
                 <div class="profile">
-                    <img class="img-user" src="public/Perfil.jpg">
+                    <img class="img-user" src="public/Perfil.jpg" id="profile-image">
+
+                    <button class="edit-image-button" id="edit-button" title="Editar imagem de perfil">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
                     <i class="fa-solid fa-bookmark fa-2xl"></i>
+
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
                 </div>
 
-                <h1 class="name-user">Joao lucas Santos</h1>
+                <h1 class="name-user">Joao Lucas Santos</h1>
             </div>
-
         </div>
 
         <main class="cards">
             <section class="user-info">
                 <h2>Informações do Usuário</h2>
-                <h3>Nome:<p class="name">João Lucas Santos</p>
-                </h3> <!--limite de 62 caracteres-->
-                <h3>Email:<p class="email">jaolukas3101@gmail.com</p>
-                </h3> <!--limite de 62 caracteres-->
-                <h3>Desde:<p class="date">24/04/2025</p>
+                <h3>Nome:<p class="name" id="name"></p>
                 </h3>
-                <h3>Senha:<p class="password">******************</p>
-                </h3> <!--limite de 18 caracteres-->
+                <h3>Email:<p class="email" id="email"></p>
+                </h3>
+                <h3>Desde:<p class="date" id="date">--/--/----</p>
+                </h3>
+                <h3>Senha:<p class="password" id="password"></p>
+                </h3>
+
                 <div class="button"><button class="edition">Editar</button></div>
             </section>
 
             <section class="user-history">
                 <h2>Histórico do Usuário</h2>
+                <h3>Historia do Usuario</h3>
+                <p>O histórico do usuário é uma seção dedicada a acompanhar e refletir sobre as principais atividades e
+                    marcos dentro da plataforma. Aqui, você poderá encontrar um resumo das interações, conquistas e
+                    evolução ao longo do tempo, proporcionando uma visão geral de como o usuário tem se envolvido e
+                    aproveitado as funcionalidades oferecidas.
+                    Esse texto serve apenas para informar o usuário sobre o que a seção representa, sem a necessidade de
+                    dados ou informações específicas.</p>
             </section>
         </main>
 
     </div>
+
+    <footer>
+        <a href="#header">
+            <h1 class="logo">PLANFY</h1>
+        </a>
+
+        <div class="pulblic">
+            <nav class="nav-footer">
+                <ul>
+                    <li><a href="/termos.html">Termos</a></li>
+                    <li><a href="/privacidade.html">Privacidade</a></li>
+                    <li><a href="/segurança.html">Segurança</a></li>
+                </ul>
+            </nav>
+
+            <p>&copy; 2025 PLANFY - Todos os direitos reservados.</p>
+        </div>
+
+        <div class="social-app">
+            <i class="fa-brands fa-square-instagram fa-lg"></i>
+            <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+            <i class="fa-brands fa-square-youtube fa-lg"></i>
+            <i class="fa-brands fa-square-facebook fa-lg"></i>
+        </div>
+    </footer>
+
+    <!-- Modal de edição -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Perfil</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="edit-name" placeholder="Seu nome">
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="edit-email" placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="current-password" placeholder="Senha atual">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="edit-password" placeholder="Nova senha">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="save-profile-btn" class="save-btn">Salvar</button>
+                <button id="cancel-profile-btn" class="cancel-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal de Criação -->
 
@@ -246,6 +313,7 @@
             background-color: white;
             border-radius: 15px;
             margin: 100px auto;
+            padding: 50px 50px 100px 50px !important;
             box-shadow: 0 0px 12px 4px rgba(0, 0, 0, 0.08);
         }
 
@@ -270,13 +338,8 @@
             border: 2px solid #c0c7d0;
             position: relative;
             z-index: 2;
-            cursor: pointer;
+            cursor: context-menu;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .img-user:hover {
-            transform: scale(1.05);
         }
 
         .profile .fa-bookmark {
@@ -296,11 +359,17 @@
 
         /* Seção de Cards */
         .cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            justify-items: center;
-            margin-top: 200px;
-            gap: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 300px 1;
+            margin-top: 100px;
+        }
+
+        .user-info,
+        .user-history {
+            flex: 1 1 300px;
+            max-width: 600px;
         }
 
         /* Card de Informações do Usuário */
@@ -329,12 +398,36 @@
 
         /* Card de Histórico do Usuário */
         .user-history {
-            width: 400px;
-            height: 500px;
-            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 0px 12px 4px rgba(0, 0, 0, 0.08);
-            padding: 40px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .user-history h2 {
+            font-size: 24px;
+            color: #6381A8;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .user-history h3 {
+            font-size: 20px;
+            color: #556c92;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .user-history p {
+            max-width: 300px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            line-height: 1.6;
         }
 
         .user-info h2,
@@ -374,7 +467,172 @@
             transform: scale(1.05);
         }
 
-        /* Modal */
+        .edit-image-button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #445d7e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 6px;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+        .edit-image-button i {
+            font-size: 12px;
+        }
+
+        .edit-image-button:hover {
+            background-color: #556c92;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            width: 100%;
+            height: 125px;
+            background-color: #6381A8;
+            color: #F3F3F3;
+        }
+
+        footer a {
+            text-decoration: none;
+        }
+
+        /* Public */
+        .pulblic {
+            text-align: center;
+        }
+
+        /* Logo */
+        footer h1.logo {
+            width: 200px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #445d7e;
+            color: #F8F8FF;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        /* Navigation */
+        .nav-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .nav-footer ul {
+            display: flex;
+            gap: 50px;
+            list-style-type: none;
+        }
+
+        .nav-footer li {
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        footer .nav-footer a {
+            color: #F3F3F3;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-footer li:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-footer a:hover {
+            color: #c2d1e6;
+        }
+
+        /* Social Apps */
+        .social-app {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        .social-app i {
+            font-size: 40px;
+            color: #F3F3F3;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .social-app i:hover {
+            color: #c2d1e6;
+            transform: scale(1.1);
+        }
+
+        /* Footer text */
+        footer p {
+            cursor: context-menu;
+        }
+
+        /* Modal de edição */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        /* Modal de criaçaõ */
         .modal {
             display: none;
             position: fixed;
@@ -616,6 +874,179 @@
             }
         }
 
+        /* Responsividade Container para 768px*/
+        @media (min-width: 768px) {
+            .container {
+                width: auto;
+                height: auto;
+                padding: 40px;
+                margin: 100px 50px;
+            }
+
+            .container-profile {
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+                gap: 40px;
+                text-align: left;
+            }
+
+            .cards {
+                justify-content: space-around;
+            }
+
+            .name-user {
+                font-size: 32px;
+            }
+
+            .user-info,
+            .user-history {
+                max-width: 400px;
+                height: 500px;
+            }
+
+            .edition {
+                width: auto;
+            }
+        }
+
+        /* Responsividade Container para 768px*/
+        @media (max-width: 768px) {
+            .container {
+                width: auto;
+                height: auto;
+                padding: 40px;
+                margin: 100px 50px;
+            }
+
+            .container-profile {
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+                gap: 40px;
+                text-align: left;
+            }
+
+            .name-user {
+                font-size: 32px;
+            }
+
+            .user-info,
+            .user-history {
+                max-width: 400px;
+                height: 500px;
+            }
+
+            .edition {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 420px) {
+            footer {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 10px;
+                text-align: center;
+                gap: 20px;
+            }
+
+            footer h1.logo {
+                width: 100%;
+                height: auto;
+                font-size: 1.6rem;
+                padding: 8px;
+            }
+
+            .pulblic {
+                width: 100%;
+            }
+
+            .nav-footer {
+                padding: 10px 0;
+            }
+
+            .nav-footer ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-footer a {
+                font-size: 16px;
+            }
+
+            .social-app {
+                display: none;
+            }
+
+            .social-app i {
+                font-size: 30px;
+            }
+
+            footer p {
+                font-size: 14px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Responsividade Footer entre 768px e 420px */
+        @media (max-width: 768px) and (min-width: 420px) {
+            footer {
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                padding: 15px 10px;
+                height: auto;
+                gap: 5px;
+                text-align: center;
+            }
+
+            footer h1.logo {
+                width: 150px;
+                height: auto;
+                font-size: 1.5rem;
+                padding: 10px;
+                margin: 0 auto;
+            }
+
+            .pulblic {
+                flex: 1 1 100%;
+                margin-bottom: 10px;
+            }
+
+            .pulblic p {
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .nav-footer {
+                flex: 1 1 100%;
+                padding: 10px 0;
+            }
+
+            .nav-footer ul {
+                flex-direction: row;
+                gap: 30px;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .nav-footer a {
+                font-size: 15px;
+            }
+
+            .social-app {
+                flex: 1 1 100%;
+                justify-content: center;
+                gap: 12px;
+                margin-bottom: 10px;
+            }
+
+            .social-app i {
+                font-size: 32px;
+            }
+        }
+
         /* Responsividade Header para Tablet */
         @media (max-width: 1094px) {
             header {
@@ -640,45 +1071,350 @@
                 height: 45px;
             }
         }
+
+        /* Responsividade Container para 768px*/
+        @media (max-width: 1094px) {
+            .container {
+                padding: 40px;
+                margin: 100px 75px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr !important;
+                margin-top: 100px;
+                gap: 40px;
+            }
+
+            .box {
+                max-width: 600px;
+            }
+
+            .border01 img,
+            .border02 img {
+                max-width: 150px;
+            }
+
+            .border01 {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .border02 {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+        }
+
+        /* Responsividade Container para telas entre 758px e 420px */
+        @media (max-width: 758px) and (min-width: 420px) {
+            .container {
+                padding: 30px;
+                margin: 80px auto;
+                width: 100%;
+                height: auto;
+            }
+
+            .container-profile {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                position: relative;
+            }
+
+            .profile {
+                position: relative;
+                width: 90px;
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .name-user {
+                margin-top: 30px;
+                font-size: 28px;
+            }
+
+            .cards {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .user-info,
+            .user-history {
+                width: 100%;
+                max-width: none;
+                padding: 20px;
+
+            }
+
+            .user-info {
+                height: auto;
+                flex: 1 1 auto;
+
+            }
+
+            .user-history {
+                height: auto;
+            }
+
+            .user-info h2,
+            .user-history h2 {
+                font-size: 22px;
+            }
+
+            .user-info h3,
+            .user-history h3 {
+                font-size: 18px;
+            }
+
+            .user-info p,
+            .user-history p {
+                font-size: 14px;
+                word-wrap: break-word;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .edition {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+
+            .edit-image-button {
+                padding: 5px;
+                font-size: 12px;
+            }
+
+            .img-user {
+                position: relative;
+                right: 15px;
+                width: 85px;
+                height: 85px;
+            }
+
+            .profile button {
+                position: absolute;
+                right: 15px;
+            }
+
+            .profile .fa-bookmark {
+                font-size: 100px;
+                top: 80px;
+            }
+
+            .user-history p {
+                max-width: 100%;
+            }
+        }
+
+        /* Responsividade para telas menores que 420px */
+        @media (max-width: 420px) {
+            .container {
+                padding: 20px;
+                margin: 40px auto;
+                width: 100%;
+            }
+
+            .container-profile {
+                gap: 25px;
+            }
+
+            .name-user {
+                font-size: 24px;
+            }
+
+            .cards {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .user-info,
+            .user-history {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .edition {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
+
+            .img-user {
+                position: relative;
+                right: 15px;
+                width: 75px;
+                height: 75px;
+            }
+
+            .profile button {
+                position: absolute;
+                right: 15px;
+                width: 25px;
+                height: 30px;
+            }
+
+            .profile .fa-bookmark {
+                font-size: 80px;
+                top: 60px;
+            }
+
+            .user-info p,
+            .user-history p {
+                font-size: 13px;
+                word-wrap: break-word;
+            }
+
+            .user-info h2,
+            .user-history h2 {
+                font-size: 19px;
+            }
+
+            .user-info h3,
+            .user-history h3 {
+                font-size: 17px;
+            }
+        }
     </style>
 
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            /* ==== INFORMAÇÕES DO USUÁRIO ==== */
+            const nome = localStorage.getItem("nome");
+            const email = localStorage.getItem("email");
+            const senha = localStorage.getItem("senha");
+            const dataCriacao = localStorage.getItem("dataCriacao");
 
-        /* Modal */
+            if (nome && email && senha) {
+                const nameEl = document.getElementById("name");
+                const emailEl = document.getElementById("email");
+                const passwordEl = document.getElementById("password");
+                const dateEl = document.getElementById("date");
 
-        document.addEventListener("DOMContentLoaded", function () {
+                if (nameEl) nameEl.textContent = nome;
+                if (emailEl) emailEl.textContent = email;
+                if (passwordEl) passwordEl.textContent = "*".repeat(senha.length);
+                if (dateEl) dateEl.textContent = dataCriacao || "Data não disponível";
+            }
+
+            /* ==== MODAL DE EDIÇÃO DE PERFIL ==== */
+            const editProfileModal = document.getElementById("edit-profile-modal");
+            const editButton = document.querySelector(".edition");
+            const saveProfileBtn = document.getElementById("save-profile-btn");
+            const cancelProfileBtn = document.getElementById("cancel-profile-btn");
+
+            if (editButton) {
+                editButton.addEventListener("click", () => {
+                    document.getElementById("edit-name").value = document.getElementById("name").textContent;
+                    document.getElementById("edit-email").value = document.getElementById("email").textContent;
+                    document.getElementById("edit-password").value = "";
+                    editProfileModal.style.display = "flex";
+                });
+            }
+
+            if (cancelProfileBtn) {
+                cancelProfileBtn.addEventListener("click", () => {
+                    editProfileModal.style.display = "none";
+                });
+            }
+
+            if (saveProfileBtn) {
+                saveProfileBtn.addEventListener("click", () => {
+                    const name = document.getElementById("edit-name").value.trim();
+                    const email = document.getElementById("edit-email").value.trim();
+                    const currentPassword = document.getElementById("current-password").value.trim();
+                    const newPassword = document.getElementById("edit-password").value.trim();
+
+                    if (!name || !email || !currentPassword || !newPassword) {
+                        alert("Preencha todos os campos.");
+                        return;
+                    }
+
+                    if (name.length < 5 || name.length > 56) {
+                        alert("O nome deve ter entre 5 e 56 caracteres.");
+                        return;
+                    }
+
+                    if (email.length < 6 || email.length > 56) {
+                        alert("O e-mail deve ter entre 6 e 56 caracteres.");
+                        return;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    const validDomains = ["hotmail.com", "yahoo.com", "gmail.com", "outlook.com", "icloud.com"];
+                    const domain = email.split("@")[1];
+
+                    if (!emailRegex.test(email) || !validDomains.includes(domain)) {
+                        alert("E-mail incorreto. Use um domínio válido como gmail.com.");
+                        return;
+                    }
+
+                    if (/\s/.test(newPassword)) {
+                        alert("A senha não pode conter espaços.");
+                        return;
+                    }
+
+                    const senhaRegex = /^(?=(?:.*\d){2}).{4,16}$/;
+                    if (!senhaRegex.test(newPassword)) {
+                        alert("A senha precisa ter entre 4 e 16 caracteres e pelo menos dois números.");
+                        return;
+                    }
+
+                    // Atualiza os dados no perfil visível
+                    document.getElementById("name").textContent = name;
+                    document.getElementById("email").textContent = email;
+                    document.getElementById("password").textContent = "*".repeat(newPassword.length);
+
+                    // Salva no localStorage
+                    localStorage.setItem("nome", name);
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("senha", newPassword);
+
+                    // Atualiza também a div .name-user
+                    const nomeUserEl = document.querySelector(".name-user");
+                    if (nomeUserEl) nomeUserEl.textContent = name;
+
+                    // Fecha o modal
+                    editProfileModal.style.display = "none";
+                    alert("Perfil atualizado com sucesso!");
+                });
+            }
+
+            /* ==== MODAL DE CRIAÇÃO DE TAREFA ==== */
             const taskModal = document.getElementById("task-modal");
+            const creationButton = document.querySelector(".creation");
             const saveTaskBtn = document.getElementById("save-task-btn");
             const cancelTaskBtn = document.getElementById("cancel-task-btn");
-            const creationButton = document.querySelector(".creation");
             const taskText = document.getElementById("task-text");
             const taskCategory = document.getElementById("task-category");
             const recurrenceDisplay = document.getElementById("task-recurrence-display");
             const recurrenceCheckboxes = document.querySelectorAll("#task-recurrence-options input[type='checkbox']");
             const taskTime = document.getElementById("task-time");
 
-            let isPageReloaded = false;
+            if (creationButton && taskModal) {
+                creationButton.addEventListener("click", () => {
+                    document.getElementById("modal-title").textContent = "Nova Tarefa";
+                    taskModal.style.display = "flex";
+                });
+            }
 
-            // Abrir modal ao clicar no botão de criação
-            creationButton.addEventListener("click", function () {
-                document.getElementById("modal-title").textContent = "Nova Tarefa";
-                taskModal.style.display = "flex";
-            });
+            if (cancelTaskBtn) {
+                cancelTaskBtn.addEventListener("click", () => {
+                    taskModal.style.display = "none";
+                });
+            }
 
-            // Fechar modal ao clicar no botão de cancelar
-            cancelTaskBtn.addEventListener("click", function () {
-                taskModal.style.display = "none";
-            });
-
-            // Bloquear checkboxes de dias da semana se for "Diária"
             function updateCheckboxes() {
                 const isDiaria = taskCategory.value === "diaria";
 
                 recurrenceCheckboxes.forEach(checkbox => {
                     checkbox.disabled = isDiaria;
-                    if (isDiaria) {
-                        checkbox.checked = false;
-                    }
+                    if (isDiaria) checkbox.checked = false;
                 });
 
                 if (recurrenceDisplay) {
@@ -686,61 +1422,90 @@
                 }
             }
 
-            updateCheckboxes();
+            if (taskCategory) {
+                taskCategory.addEventListener("change", updateCheckboxes);
+                updateCheckboxes();
+            }
 
-            taskCategory.addEventListener("change", updateCheckboxes);
+            if (saveTaskBtn) {
+                saveTaskBtn.addEventListener("click", () => {
+                    const taskValue = taskText.value.trim();
+                    const taskTimeValue = taskTime.value.trim();
+                    const isDiaria = taskCategory.value === "diaria";
+                    const selectedDays = Array.from(recurrenceCheckboxes).filter(cb => cb.checked);
 
-            // Validação antes de salvar a tarefa
-            saveTaskBtn.addEventListener("click", function () {
-                const taskValue = taskText.value.trim();
-                const selectedCheckboxes = Array.from(recurrenceCheckboxes).filter(checkbox => checkbox.checked);
-                const isDiaria = taskCategory.value === "diaria";
-                const taskTimeValue = taskTime.value.trim();
+                    if (!taskValue) {
+                        alert("Por favor, preencha o nome da tarefa.");
+                        return;
+                    }
 
-                // Verifica se o campo de texto está vazio
-                if (!taskValue) {
-                    alert("Por favor, preencha o nome da tarefa.");
-                    return;
-                }
+                    if (!taskTimeValue) {
+                        alert("Por favor, selecione uma hora.");
+                        return;
+                    }
 
-                // Verifica se o seletor de hora está vazio
-                if (!taskTimeValue) {
-                    alert("Por favor, selecione uma hora.");
-                    return;
-                }
+                    if (!isDiaria && selectedDays.length === 0) {
+                        alert("Por favor, selecione pelo menos um dia da semana.");
+                        return;
+                    }
 
-                // Se não for "Diária", verificar se ao menos um dia foi selecionado
-                if (!isDiaria && selectedCheckboxes.length === 0) {
-                    alert("Por favor, selecione pelo menos um dia da semana.");
-                    return;
-                }
+                    alert("Tarefa criada com sucesso!");
+                    taskModal.style.display = "none";
 
-                // Se todas as verificações passaram
-                alert(`Tarefa criada com sucesso!`);
+                    taskText.value = "";
+                    taskTime.value = "";
+                    taskCategory.value = "semanal";
+                    recurrenceCheckboxes.forEach(cb => (cb.checked = false));
+                    if (recurrenceDisplay) recurrenceDisplay.value = "Selecione os dias";
+                });
+            }
 
-                taskModal.style.display = "none";
+            /* ==== TROCA DE IMAGEM DE PERFIL ==== */
+            const profileEditBtn = document.getElementById("edit-button");
+            const imageInput = document.getElementById("image-input");
+            const profileImage = document.getElementById("profile-image");
 
-                // Limpar os campos após salvar
-                taskText.value = "";
-                taskCategory.value = "semanal";
-                recurrenceCheckboxes.forEach(checkbox => (checkbox.checked = false));
-                taskTime.value = "";
+            if (profileEditBtn && imageInput && profileImage) {
+                profileEditBtn.addEventListener("click", () => {
+                    imageInput.click();
+                });
 
-                if (recurrenceDisplay) {
-                    recurrenceDisplay.value = "Selecione os dias";
-                }
+                imageInput.addEventListener("change", function () {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            profileImage.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
 
-                if (!isPageReloaded) {
-                    isPageReloaded = true;
-                    location.reload();
-                }
-
+            /* ==== ROLAGEM SUAVE EM ÂNCORAS ==== */
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const offsetTop = target.offsetTop;
+                        window.scrollTo({ top: offsetTop, behavior: "smooth" });
+                    }
+                });
             });
         });
+
+        /* ==== SALVAMENTO DO NOME DE USUARIO ==== */
+        document.addEventListener("DOMContentLoaded", function () {
+            const nomeUsuario = localStorage.getItem("nome");
+            const nomeDiv = document.querySelector(".name-user");
+
+            if (nomeUsuario && nomeDiv) {
+                nomeDiv.textContent = nomeUsuario;
+            }
+        });
     </script>
-
-    <script src="/Js/index.js" defer></script>
-
 </body>
 
 </html>

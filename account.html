@@ -13,14 +13,14 @@
 
 <body>
 
-    <header>
+    <header class="header" id="header">
         <h1 class="logo">
             <a href="/index.html">PLANFY</a>
         </h1>
         <nav class="nav-header">
             <ul>
                 <li><a href="/sobre.html">Sobre</a></li>
-                <li><a href="#">Tarefas</a></li>
+                <li><a href="/tarefas.html">Tarefas</a></li>
                 <li><a href="/login.html">Login</a></li>
             </ul>
         </nav>
@@ -45,7 +45,8 @@
         <div class="box">
             <h1>CRIE UMA CONTA</h1>
 
-            <form onsubmit="validateForm(event)">
+            <!-- Alteração no HTML -->
+            <form id="signup-form" novalidate>
                 <div class="input-group">
                     <input type="text" id="username" name="Nome" placeholder="Nome" required>
                 </div>
@@ -344,7 +345,7 @@
         .border02 {
             position: absolute;
             z-index: -1;
-            top: 395px;
+            top: 390px;
             right: 0;
         }
 
@@ -624,7 +625,7 @@
         }
 
         /* Responsividade Header para Tablet */
-        @media (max-width: 1024px) {
+        @media (max-width: 1094px) {
             header {
                 padding: 0 20px;
                 display: flex;
@@ -648,7 +649,7 @@
             }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1094px) {
             .box {
                 width: 320px;
                 padding: 25px;
@@ -667,40 +668,99 @@
     </style>
 
     <script>
+        // Abertura de Menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navHeader = document.querySelector('.nav-header');
+
+
+        function toggleMenu() {
+            navHeader.classList.toggle('active');
+        }
+
+        menuToggle.onclick = toggleMenu;
+
+        // Alterna exibição de senha
         function togglePassword() {
             var passwordInput = document.getElementById("password");
             var checkbox = document.getElementById("showPassword");
-
-            if (checkbox.checked) {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
+            passwordInput.type = checkbox.checked ? "text" : "password";
         }
 
-        function validateForm(event) {
+        // Salvamento de dados e validação
+        function salvarDados(event) {
             event.preventDefault();
 
-            // Obtém os valores dos campos
-            var username = document.getElementById("username").value;
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
+            const nome = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("password").value;
 
-            // Validações
-            if (username === "" || email === "" || password === "") {
-                alert("Todos os campos devem ser preenchidos!");
-                return false;
+            // Validação de campos obrigatórios
+            if (nome === "") {
+                alert("Por favor, preencha o campo nome.");
+                return;
             }
 
-            // Verifica se o e-mail tem um "@" para ser válido
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!emailPattern.test(email)) {
-                alert("Por favor, insira um e-mail válido!");
-                return false;
+            if (email === "") {
+                alert("Por favor, preencha o campo e-mail.");
+                return;
             }
 
-            alert("Conta criada com sucesso!");
+            if (senha === "") {
+                alert("Por favor, preencha o campo senha.");
+                return;
+            }
+
+            // Validação do comprimento do nome
+            if (nome.length < 5 || nome.length > 56) {
+                alert("O nome deve ter entre 5 e 56 caracteres.");
+                return;
+            }
+
+            // Validação do comprimento do e-mail
+            if (email.length < 6 || email.length > 56) {
+                alert("O e-mail deve ter entre 6 e 56 caracteres.");
+                return;
+            }
+
+            // Validação de e-mail com domínios específicos
+            const validEmailDomains = ["hotmail.com", "yahoo.com", "gmail.com", "outlook.com", "icloud.com"];
+            const emailDomain = email.split('@')[1];
+
+            if (!validEmailDomains.includes(emailDomain)) {
+                alert("E-mail incorreto. Apenas domínios válidos são aceitos.");
+                return;
+            }
+
+            // Validação do comprimento da senha.
+            if (senha.length < 4 || senha.length > 16) {
+                alert("A senha deve ter entre 4 e 16 caracteres.");
+                return;
+            }
+
+            const senhaPattern = /^(?=(?:.*\d){2}).{4,16}$/;
+            if (!senhaPattern.test(senha)) {
+                alert("A senha precisa conter pelo menos dois números.");
+                return;
+            }
+
+            // Obtém a data de criação
+            const dataCriacao = new Date().toLocaleDateString('pt-BR');
+
+            localStorage.setItem("nome", nome);
+            localStorage.setItem("email", email);
+            localStorage.setItem("senha", senha);
+            localStorage.setItem("dataCriacao", dataCriacao);
+
+            // Limpa o formulário
+            document.getElementById("signup-form").reset();
+
+
+            alert("Conta criada. Acesse seu perfil.");
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("signup-form").addEventListener("submit", salvarDados);
+        });
 
         /* Modal */
 
@@ -796,8 +856,6 @@
             });
         });
     </script>
-
-    <script src="/Js/index.js" defer></script>
 
 </body>
 

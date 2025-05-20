@@ -9,7 +9,7 @@
 html,
 body {
     overflow-x: hidden !important;
-    background-color: #f4f4f4;
+    background-color: white;
 }
 
 /* Cabeçalho */
@@ -231,7 +231,7 @@ header ul a:hover {
 .border03,
 .border04 {
     position: absolute;
-    z-index: -1;
+    z-index: -0;
 }
 
 .border01 {
@@ -322,6 +322,10 @@ footer {
     color: #F3F3F3;
 }
 
+footer a {
+    text-decoration: none;
+}
+
 /* Public */
 .pulblic {
     text-align: center;
@@ -360,7 +364,7 @@ footer h1.logo {
     transition: transform 0.3s ease-in-out;
 }
 
-.nav-footer a {
+footer .nav-footer a {
     color: #F3F3F3;
     text-decoration: none;
     font-size: 18px;

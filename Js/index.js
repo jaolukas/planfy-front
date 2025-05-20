@@ -1,3 +1,4 @@
+// Abertura de Menu
 const menuToggle = document.querySelector('.menu-toggle');
 const navHeader = document.querySelector('.nav-header');
 
@@ -8,6 +9,7 @@ function toggleMenu() {
 
 menuToggle.onclick = toggleMenu;
 
+// Modal
 document.addEventListener("DOMContentLoaded", function () {
     const taskModal = document.getElementById("task-modal");
     const saveTaskBtn = document.getElementById("save-task-btn");
@@ -93,10 +95,43 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (!isPageReloaded) {
-            isPageReloaded = true;  
-            location.reload();  
+            isPageReloaded = true;
+            location.reload();
         }
 
     });
 });
+
+// Sistema d ancoragem
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            smoothScrollTo(targetElement);
+        }
+    });
+});
+
+function smoothScrollTo(element) {
+    const startPosition = window.scrollY;
+    const targetPosition = element.offsetTop;
+    const distance = targetPosition - startPosition;
+    const duration = 200;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        window.scrollTo(0, startPosition + distance * progress);
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
 
